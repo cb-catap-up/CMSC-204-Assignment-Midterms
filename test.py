@@ -42,12 +42,12 @@ def test_all_heap_functions(items):
 
 def show_all_processes(items):
 
-    # show_min_heap(items)
+    show_min_heap(items)
     show_max_heap(items)
-    # show_max_peek(items)
-    # show_min_peek(items)
-    # show_pop(items)
-    # show_neutralize(items)
+    show_max_peek(items)
+    show_min_peek(items)
+    show_pop(items)
+    show_neutralize(items)
 
 
 def show_hashing(items):
@@ -60,14 +60,14 @@ def test_with_different_inputs():
     # testing Heaps
     for i in range(len(test_inputs_array_heaps)):
         print(f"\n--------------------------------------test {i + 1} Heaps Start------------------------------------------------------------\n\n")
-        # test_all_heap_functions(test_inputs_array_heaps[i])
+        test_all_heap_functions(test_inputs_array_heaps[i])
         show_all_processes(test_inputs_array_heaps[i])
         print(f"\n--------------------------------------test {i + 1} Heaps End---------------------------------------------------------------\n\n")
     # testing hashing
-    # for i in range(len(test_inputs_array_hashing)):
-    #     print(f"\n--------------------------------------test {i + 1} Hashing Start------------------------------------------------------------\n\n")
-    #     show_hashing(test_inputs_array_hashing[i])
-    #     print(f"\n--------------------------------------test {i + 1} Hashing End--------------------------------------------------------------\n\n")
+    for i in range(len(test_inputs_array_hashing)):
+        print(f"\n--------------------------------------test {i + 1} Hashing Start------------------------------------------------------------\n\n")
+        show_hashing(test_inputs_array_hashing[i])
+        print(f"\n--------------------------------------test {i + 1} Hashing End--------------------------------------------------------------\n\n")
 
 # runs tests
 test_with_different_inputs()
