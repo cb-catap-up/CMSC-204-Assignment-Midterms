@@ -58,6 +58,8 @@ class Heap:
         fourth_level_spacer = 3 * " "
         inbetween_spacer = " "
 
+        print(f"Current Heap: \n" )
+
         for i in range(number_of_node_statements):
 
             item_to_print = ""
@@ -103,7 +105,12 @@ class Heap:
                 print(f"{1*' '}{item_to_print}")
 
             node_number_iterator *= 2
-        
+        print("\n")
+
+    def _get_last_parent_index(self, keys):
+        # index of the last parent node
+        return len(self.keys)//2-1
+
     def _get_parent_index(self, index):
         return len(index)//2
 
@@ -113,7 +120,7 @@ class Heap:
     def _get_right_children_index(self, index):
         return 2*index + 2
 
-    def _heapify_min(self,keys: list, index):
+    def _heapify_min(self,keys: list, index, show_process):
         while True:
             parent = index
             left_item = self._get_left_children_index(index)
@@ -125,11 +132,59 @@ class Heap:
                 parent = right_item
             if parent == index:
                 break
+
+            if show_process:
+                # show what is bubbling
+                print(f"Movement: {keys[index]} bubble down, {keys[parent]} bubble up\n")
+
             keys[index], keys[parent] = keys[parent], keys[index]
+
+            if show_process:
+                # show heap after each swap
+                self.display_heap()
+                print('\n')
+
             index = parent
         return keys
+
+    def min_heap(self, show_process=True):
+        self.heap = self.keys.copy()
+        if show_process:
+            print("MININIMUM HEAP\n")
+            # show array input
+            print('original array:\n')
+            print(f"{self.heap}\n")
+            # show heap originally
+            print('tree version of heap:\n')
+            self.display_heap()
+            print('\n')
     
-    def _heapify_max(self,keys: list, index):
+        for i in range(self._get_last_parent_index(self.heap), -1, -1):
+            self._heapify_min(self.heap, i, show_process)
+
+    
+    def max_heap(self, show_process = True):
+        self.heap = self.keys.copy()
+        if show_process:
+            print("MAXIMUM HEAP\n")
+            # show array input
+            print('original array:\n')
+            print(f"{self.heap}\n")
+            # show heap originally
+            print('tree version of heap:\n')
+            self.display_heap()
+            print('\n')
+    
+        for i in range(self._get_last_parent_index(self.heap), -1, -1):
+            self.heap = self.bubble_down(self.heap,i, show_process)
+
+    def peek(self):
+        print(f"PEEK OCCURED: {self.heap[0]}")
+        return self.heap[0]
+
+    # same as max heapify
+    def bubble_down(self,keys, index, show_process):
+
         while True:
             parent = index
             left_item = self._get_left_children_index(index)
@@ -141,53 +196,19 @@ class Heap:
                 parent = right_item
             if parent == index:
                 break
+            if show_process:
+                # show what is bubbling
+                print(f"Movement: {keys[index]} bubble down, {keys[parent]} bubble up\n")
+
             keys[index], keys[parent] = keys[parent], keys[index]
+
+            if show_process:
+                # show heap after each swap
+                self.display_heap()
+                print('\n')
+
             index = parent
         return keys
-
-    def min_heap(self):
-        self.heap = self.keys.copy()
-
-        for i in range(len(self.heap)//2):
-            self._heapify_min(self.heap, i)
-        return self.heap
-    
-    def max_heap(self):
-        self.heap = self.keys.copy()
-        for i in range(len(self.heap)//2):
-            self.heap = self._heapify_max(self.keys,i)
-        return self.heap
-
-    def peek(self):
-        return self.keys[0]
-
-    def bubble_down(self, index):
-        n = len(self.keys)
-
-        while True:
-            largest = index
-            left = self._get_left_children_index(index)
-            right = self._get_right_children_index(index)
-
-            if left < n and self.keys[left] > self.keys[largest]:
-                largest = left
-            if right < n and self.keys[right] > self.keys[largest]:
-                largest = right
-
-            if largest == index:
-                break
-
-            # show what is bubbling
-            print(f"{self.keys[index]} moved down, {self.keys[largest]} moved up")
-
-            # swap
-            self.keys[index], self.keys[largest] = self.keys[largest], self.keys[index]
-
-            index = largest
-
-            # show heap after each swap
-            self.display_heap()
-            print('\n')
     
     def get_current_nodes_for_each_level(self):
         if not self.heap:
@@ -207,27 +228,52 @@ class Heap:
         return levels
 
 
-    def pop(self):
-        if not self.keys:
+    def pop(self, show_process= True):
+        if not self.heap:
             raise IndexError("pop from empty heap")
-        # show initial
-        self.display_heap()
+        
+        if show_process:
+            print("POP OCCURS\n")
+            # show array input
+            print('original array:\n')
+            print(f"{self.heap}\n")
+            # show initial
+            self.display_heap()
+
+        if show_process:
+            print("Movement: Swap first and last index and remove the last index\n")
+            print(f"{self.heap}\n")
+            print("               |     ")
+            print("               |     ")
+            print("              \|/     \n")
         # Swap root with last element, then remove last element so it can bubble down
-        last_index = len(self.keys) - 1
-        self.keys[0], self.keys[last_index] = self.keys[last_index], self.keys[0]
-        item = self.keys.pop()  # Remove the max (old root)
+        last_index = len(self.heap) - 1
+        self.heap[0], self.heap[last_index] = self.heap[last_index], self.heap[0]
+        item = self.heap.pop()  # Remove the max (old root)
 
-        print("swap first and last index and remove the last")
-        # show heap after each swap
-        self.display_heap()
-        print('\n')
+        if show_process:
+            # show heap after each swap
+            print(f"{self.heap}\n")
+            self.display_heap()
+            print('\n')
         # # Bubble down the new root to restore heap property
-        if self.keys:
-            self.bubble_down(0)
-
+        if self.heap:
+            self.bubble_down(self.heap,0, show_process)
+        # reassign new heap after using pop
         return item
 
     # remove the two larges values
-    def neutralize(self):
+    def neutralize(self, show_process=True):
+        if show_process:
+            print("NEUTRALIZE OCCURS\n")
+            # show array input
+            print('original array:\n')
+            print(f"{self.heap}\n")
+            # show initial
+            self.display_heap()
         for _ in range(2):
-            self.pop()
+            self.pop(show_process)
+    
+    # returns heap
+    def get_heap(self):
+        return self.heap
