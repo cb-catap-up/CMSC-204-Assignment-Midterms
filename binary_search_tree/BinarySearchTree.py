@@ -1,4 +1,5 @@
-import time
+from helpers.Helpers import add_break_point
+
 class Node:
     def __init__(self, info):
         self.info = info
@@ -34,6 +35,7 @@ class BST:
             print(f'Inserting {info}')
             print('='*50)
             self.display_tree(self.root)
+            add_break_point(sleep_only=True)
 
         else:
             new_node.parent = trailing_node # use trailing_node instead of current_node, current_node needs to be none inorder to break the loop   
@@ -44,6 +46,7 @@ class BST:
                 print('='*50)
                 #time.sleep(1)
                 self.display_tree(self.root)
+                add_break_point(sleep_only=True)
             else:
                 trailing_node.right = new_node
                 print(f"\n{'='*50}")
@@ -51,6 +54,7 @@ class BST:
                 print('='*50)
                 #time.sleep(1)
                 self.display_tree(self.root)
+                add_break_point(sleep_only=True)
 
     def display_preorder(self, tree):
         if tree is None:
