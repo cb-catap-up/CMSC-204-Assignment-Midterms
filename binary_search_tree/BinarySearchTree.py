@@ -30,20 +30,25 @@ class BST:
 
         if trailing_node is None:
             self.root = new_node
-            print(f'\nInserting {info}')
-            #time.sleep(1)
+            print(f"\n{'='*50}")
+            print(f'Inserting {info}')
+            print('='*50)
             self.display_tree(self.root)
 
         else:
             new_node.parent = trailing_node # use trailing_node instead of current_node, current_node needs to be none inorder to break the loop   
             if info < trailing_node.info:
                 trailing_node.left = new_node
-                print(f'\nInserting {info}')
+                print(f"\n{'='*50}")
+                print(f'Inserting {info}')
+                print('='*50)
                 #time.sleep(1)
                 self.display_tree(self.root)
             else:
                 trailing_node.right = new_node
-                print(f'\nInserting {info}')
+                print(f"\n{'='*50}")
+                print(f'Inserting {info}')
+                print('='*50)
                 #time.sleep(1)
                 self.display_tree(self.root)
 
