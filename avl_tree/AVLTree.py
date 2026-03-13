@@ -1,3 +1,5 @@
+from helpers.Helpers import add_break_point
+
 class Node:
     def __init__(self, info):
         self.info = info
@@ -105,11 +107,12 @@ class AVL:
 
         print("\nTree BEFORE rotation:")
         self.display_tree(self.root)
-
+        add_break_point(sleep_only=True)
         if balance_factor == 2:
             if self.get_balance_factor(node.left) >= 0 : # leaning to the right
                 print(f"\n  >>> Balance Factor {balance_factor}: Single Right Rotate at node {node.info}")
                 result = self.single_right_rotation(node)
+                
             else: # the bf of node.left is -1 thus a right-left rotation
                 print(f"\n  >>> Balance Factor {balance_factor}: Double Right Rotate at node {node.info}")
                 result = self.double_right_rotation(node)
@@ -185,6 +188,8 @@ class AVL:
         # else:
         #     print(f"\n>>> Final tree after inserting {info} (rotation completed):")
         #     self.display_tree(self.root)
+        # for ui
+        add_break_point(7, sleep_only=True)
 
     def display_tree(self, node, level=0, prefix="Root: "):
         if node is not None:
@@ -207,7 +212,7 @@ class AVL:
         stack = []
         result = []  
 
-        print("AVL in STACK: Visualization Descending Order)")
+        print(f"\n\nAVL in STACK: Visualization Descending Order): ")
 
         while current is not None or stack:
             while current is not None:
@@ -223,6 +228,7 @@ class AVL:
 
                 if push_pop_count == limit: # 4 according to the midterms
                     print(f"\nFirst {limit} PUSH/POP operations reached")
+                add_break_point(sleep_only=True)    
 
             current = stack.pop() # removed the last key from the stack using .pop()
             push_pop_count += 1
@@ -230,10 +236,12 @@ class AVL:
             result.append(current.info) # append the last key, which is now the fist key
             print(f'Added to the final output: {current.info}')
             print(f"  current stack after remove/pop: {[n.info for n in stack]}")
+            add_break_point(sleep_only=True)
 
             current = current.left # traverse to the left just in case it is existing
             if current:
                 print(f'\nTraverse to the left side of {current.parent.info}')
+                add_break_point(sleep_only=True)                
 
 
         print("\n" + "=" * 45)
