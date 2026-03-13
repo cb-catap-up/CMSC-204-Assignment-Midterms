@@ -19,13 +19,16 @@ class Hashing:
             if self.hash_map[remainder] == None:
                 self.hash_map[remainder] = key
                 if show_computation:
+                    print(f"\n{'='*100}")
                     print(f"The position of key: {key} from initial Array is calculated with: k({key}) mod 11 = {remainder}\n")
                     print(f'-> The key: {key} has been inserted to slot: {remainder}\n')
-                    print(f"-> new hash: {self.hash_map}\n\n")
+                    print(f"-> new hash: {self.hash_map}")
+                    print(f"{'='*100}")
                 
             elif self.hash_map[remainder] != None:
                 # first case using the quadratic probe
                 probe_count = 0
+                print(f"\n{'='*100}")
                 print(f"The position of key: {key} is calculated with: h(k,i) = (h(k) + 3(i)^2 +2 )mod 11\n")
                 while True:
                     new_key = self.compute_quadratic_probe(key, remainder, probe_count)
@@ -35,7 +38,8 @@ class Hashing:
                 computed_probe = self.compute_quadratic_probe(key, remainder, probe_count, False)
                 self.hash_map[computed_probe] = key
                 print(f'-> The key: {key} has been inserted to slot: {computed_probe}\n')
-                print(f"-> new hash: {self.hash_map}\n\n")
+                print(f"-> new hash: {self.hash_map}")
+                print(f"{'='*100}")
     
     def compute_quadratic_probe(self,key, remainder,probe_count, show_computation = True):
         if show_computation:
@@ -54,7 +58,6 @@ class Hashing:
         h(k,i) = ({key} + {3*(probe_count**2)} +2 )mod 11
         h(k,i) = ({remainder + 3*(probe_count**2) + 2})mod 11
         h(k,i) = {(remainder + 3*(probe_count**2) + 2) % 11}
-        
         """)
         return (remainder + 3*(probe_count**2) + 2) % 11
     

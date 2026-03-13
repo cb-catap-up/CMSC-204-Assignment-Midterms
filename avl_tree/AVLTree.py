@@ -207,7 +207,7 @@ class AVL:
         stack = []
         result = []  
 
-        print("AVL in STACK: Visualization Descending Order)")
+        print(f"\n\nAVL in STACK: Visualization Descending Order): ")
 
         while current is not None or stack:
             while current is not None:

@@ -85,6 +85,7 @@ class Application():
             answer = input(': ')            
             if answer == '1':
                 self.clear_console()
+                self.clear_console()
                 break
             else:
                 print('Please make sure to enter valid option only')
@@ -93,20 +94,22 @@ class Application():
         heap.max_heap(show_process=True)
 
         while True:
-            print('Press how many threats to neutralize (default=2)')
+            print('Press 1 threats to neutralize threats(2)')
             answer = input(': ')            
-            if answer == '2':
+            if answer == '1':
+                self.clear_console()
                 self.clear_console()
                 break
             else:
                 print('Please make sure to enter valid option only')
 
-        heap.neutralize(num_to_neutralize=int(answer))
+        heap.neutralize(num_to_neutralize=int(2))
 
         while True:
             print('Press 1 to store these threats to the hash table')
             answer = input(': ')            
             if answer == '1':
+                self.clear_console()
                 self.clear_console()
                 break
             else:
@@ -119,6 +122,7 @@ class Application():
             print('Press 1 to display the threats stored in AVL Tree in descending order:')
             answer = input(': ')            
             if answer == '1':
+                self.clear_console()
                 self.clear_console()
                 break
             else:
@@ -134,4 +138,5 @@ if __name__ == "__main__":
     start.start_screen()
     # start = Application()
     # start.application() 
+    # keys
     start.menu_answer_1([2,5,3,0,1,0,4,6])

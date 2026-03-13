@@ -166,6 +166,7 @@ class Heap:
     def max_heap(self, show_process = True):
         self.heap = self.keys.copy()
         if show_process:
+            print(f"\n\n{'='*100}")
             print("MAXIMUM HEAP\n")
             # show array input
             print('original array:\n')
@@ -173,10 +174,11 @@ class Heap:
             # show heap originally
             print('tree version of heap:\n')
             self.display_heap()
-            print('\n')
     
         for i in range(self._get_last_parent_index(self.heap), -1, -1):
             self.heap = self.bubble_down(self.heap,i, show_process)
+        if show_process:
+            print(f"{'='*100}")
 
     def peek(self):
         print(f"PEEK OCCURED: {self.heap[0]}")
@@ -255,9 +257,9 @@ class Heap:
         if show_process:
             print("Movement: Swap first and last index and remove the last index\n")
             print(f"{self.heap}\n")
-            print("               |     ")
-            print("               |     ")
-            print("              \|/     \n")
+            print("           |     ")
+            print("           |     ")
+            print("          \|/     \n")
         # Swap root with last element, then remove last element so it can bubble down
         last_index = len(self.heap) - 1
         self.heap[0], self.heap[last_index] = self.heap[last_index], self.heap[0]
@@ -277,6 +279,7 @@ class Heap:
     # remove the two larges values
     def neutralize(self, show_process=True, num_to_neutralize=2):
         if show_process:
+            print(f"\n\n{'='*100}")
             print("NEUTRALIZE OCCURS\n")
             # show array input
             print('original array:\n')
@@ -285,6 +288,8 @@ class Heap:
             self.display_heap()
         for _ in range(num_to_neutralize):
             self.pop(show_process)
+        if show_process:
+            print(f"{'='*100}")
     
     # returns heap
     def get_heap(self):
