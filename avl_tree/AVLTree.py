@@ -199,3 +199,44 @@ class AVL:
                 else:
                     print(" " * ((level + 1) * 4) + "R── None")
 
+   
+    def display_descending_visualized(self, limit=4):        
+        current = self.root
+        step = 0
+        push_pop_count = 0
+        stack = []
+        result = []  
+
+        print("AVL in STACK: Visualization Descending Order)")
+
+        while current is not None or stack:
+            while current is not None:
+                stack.append(current)
+                push_pop_count += 1
+                step += 1
+                print("=" * 45)
+                print(f"Push {current.info}")
+                print("=" * 45)
+                print(f"  current stack: {[n.info for n in stack]}\n")
+
+                current = current.right # traverse right because larger value are found here 
+
+                if push_pop_count == limit: # 4 according to the midterms
+                    print(f"\nFirst {limit} PUSH/POP operations reached")
+
+            current = stack.pop() # removed the last key from the stack using .pop()
+            push_pop_count += 1
+            step += 1
+            result.append(current.info) # append the last key, which is now the fist key
+            print(f'Added to the final output: {current.info}')
+            print(f"  current stack after remove/pop: {[n.info for n in stack]}")
+
+            current = current.left # traverse to the left just in case it is existing
+            if current:
+                print(f'\nTraverse to the left side of {current.parent.info}')
+
+
+        print("\n" + "=" * 45)
+        print("Descending Order:", result)
+        print("=" * 45)
+

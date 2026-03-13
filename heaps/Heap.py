@@ -109,10 +109,10 @@ class Heap:
 
     def _get_last_parent_index(self, keys):
         # index of the last parent node
-        return len(self.keys)//2-1
+        return len(keys)//2-1
 
     def _get_parent_index(self, index):
-        return len(index)//2
+        return (index)//2
 
     def _get_left_children_index(self, index):
         return 2*index + 1
@@ -217,13 +217,25 @@ class Heap:
         height = math.floor(math.log2(len(self.heap)))
 
         levels = []
+        index = 0
+        total_nodes = len(self.heap)
 
         for level in range(height + 1):
-            start = 2**level - 1
-            end = min(2**(level + 1) - 2, len(self.heap) - 1)
+            # start = 2**level - 1
+            # end = min(2**(level + 1) - 2, len(self.heap) - 1)
+            nodes_at_this_level = min(2**level, total_nodes - index)
 
-            current_level = self.heap[start:end+1]
+            if nodes_at_this_level <= 0:
+                break
+
+            # current_level = self.heap[start:end+1]
+            # levels.append(current_level)
+            current_level = self.heap[index:index + nodes_at_this_level]
             levels.append(current_level)
+            index += nodes_at_this_level
+            
+            if index >= total_nodes:
+                break
 
         return levels
 
@@ -263,7 +275,7 @@ class Heap:
         return item
 
     # remove the two larges values
-    def neutralize(self, show_process=True):
+    def neutralize(self, show_process=True, num_to_neutralize=2):
         if show_process:
             print("NEUTRALIZE OCCURS\n")
             # show array input
@@ -271,7 +283,7 @@ class Heap:
             print(f"{self.heap}\n")
             # show initial
             self.display_heap()
-        for _ in range(2):
+        for _ in range(num_to_neutralize):
             self.pop(show_process)
     
     # returns heap
