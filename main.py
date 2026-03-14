@@ -123,7 +123,6 @@ class Application():
             else:
                 print('Please make sure to enter valid option only')
 
-        avl_start.s
         avl_start.display_descending_visualized()
 
 
