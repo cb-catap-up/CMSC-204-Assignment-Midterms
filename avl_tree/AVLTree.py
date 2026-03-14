@@ -189,7 +189,7 @@ class AVL:
         #     print(f"\n>>> Final tree after inserting {info} (rotation completed):")
         #     self.display_tree(self.root)
         # for ui
-        add_break_point(10, sleep_only=True)
+        add_break_point(1, sleep_only=True)
 
     def display_tree(self, node, level=0, prefix="Root: "):
         if node is not None:
