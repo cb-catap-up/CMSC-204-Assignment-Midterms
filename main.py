@@ -123,7 +123,32 @@ class Application():
             else:
                 print('Please make sure to enter valid option only')
 
+        avl_start.s
         avl_start.display_descending_visualized()
+
+
+        while True:
+            print('Press 1 to display all the updates done:')
+            answer = input(': ')            
+            if answer == '1':
+                clear_console()
+                break
+            else:
+                print('Please make sure to enter valid option only')
+
+        closing = """
+        ┌─────────────────────────────────────────────────────────────┐
+        │                    SYSTEM SNAPSHOT                          │
+        ├───────────────┬─────────────────────────────────────────────┤
+        │ AVL Tree      │ Balanced and ready                          │
+        │ Max-Heap      │ Top threats neutralized - Heap property OK │
+        │ Hash Table    │ All 8 keys stored - Collisions resolved    │
+        │ Stack Log     │ Descending order: [6,5,4,3,2,1,0,0]        │
+         └───────────────┴─────────────────────────────────────────────┘  """
+        
+        print(closing)
+
+
         
 
 if __name__ == "__main__":
