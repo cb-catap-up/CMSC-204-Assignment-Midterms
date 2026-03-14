@@ -23,7 +23,7 @@ class Application():
             ╚════════════════════════════════════════════════════════════╝
             """
         print(f'{START_SCREEN}\n')
-        time.sleep(2)
+        time.sleep(5)
         clear_console()
         
         print('🦠' * 50)

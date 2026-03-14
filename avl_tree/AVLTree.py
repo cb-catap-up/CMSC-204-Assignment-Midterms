@@ -126,7 +126,7 @@ class AVL:
                 result = self.double_left_rotation(node)
 
         print("\nTree AFTER rotation:")
-        self.display_tree(self.root)
+        # self.display_tree(self.root)
 
         return result
     
