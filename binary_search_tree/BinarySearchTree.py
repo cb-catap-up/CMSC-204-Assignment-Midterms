@@ -6,7 +6,6 @@ class Node:
         self.right = None 
         self.left = None 
         self.parent = None 
-        self.height = 0 # need height to calculate the balance factor (bf) 
 
     
 class BST:

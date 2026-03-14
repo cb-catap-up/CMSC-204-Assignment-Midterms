@@ -174,7 +174,7 @@ class Heap:
             # show heap originally
             print('tree version of heap:\n')
             self.display_heap()
-            add_break_point(5, sleep_only=True)
+            add_break_point(1, sleep_only=True)
     
         for i in range(self._get_last_parent_index(self.heap), -1, -1):
             self.heap = self.bubble_down(self.heap,i, show_process)
@@ -212,7 +212,7 @@ class Heap:
                 # show heap after each swap
                 self.display_heap()
                 print('\n')
-                add_break_point(5, sleep_only=True)
+                add_break_point(1, sleep_only=True)
             index = parent
         return keys
     
@@ -274,7 +274,7 @@ class Heap:
             print(f"{self.heap}\n")
             self.display_heap()
             print('\n')
-            add_break_point(5, sleep_only=True)
+            add_break_point(1, sleep_only=True)
         # # Bubble down the new root to restore heap property
         if self.heap:
             self.bubble_down(self.heap,0, show_process, current_header)
@@ -293,10 +293,10 @@ class Heap:
             add_break_point(sleep_only=True)
         for _ in range(num_to_neutralize):
             self.pop(show_process)
-            add_break_point(5, sleep_only=True)
+            add_break_point(1, sleep_only=True)
         print("NEUTRALIZED HEAP\n")
         self.display_heap()
-        add_break_point(5, sleep_only=True)
+        add_break_point(1, sleep_only=True)
     
     # returns heap
     def get_heap(self):

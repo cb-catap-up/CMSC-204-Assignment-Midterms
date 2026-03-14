@@ -29,7 +29,7 @@ class Hashing:
                     print(f'-> The key: {key} has been inserted to slot: {remainder}\n')
                     print(f"-> new hash: {self.hash_map}")
                     print(f"{'='*130}")
-                    add_break_point(5, sleep_only=True)
+                    add_break_point(1, sleep_only=True)
             elif self.hash_map[remainder] != None:
                 # first case using the quadratic probe
                 probe_count = 0
@@ -42,13 +42,13 @@ class Hashing:
                     if self.hash_map[new_key] == None:
                         break
                     probe_count += 1
-                    add_break_point(5,sleep_only=True)
+                    add_break_point(1,sleep_only=True)
                 computed_probe = self.compute_quadratic_probe(key, remainder, probe_count, False)
                 self.hash_map[computed_probe] = key
                 print(f'-> The key: {key} has been inserted to slot: {computed_probe}\n')
                 print(f"-> new hash: {self.hash_map}")
                 print(f"{'='*100}")
-                add_break_point(5,sleep_only=True)
+                add_break_point(1,sleep_only=True)
     
     def compute_quadratic_probe(self,key, remainder,probe_count, show_computation = True):
         if show_computation:
@@ -79,5 +79,5 @@ class Hashing:
         print(f"\n{'='*130}")
         print(f"final hashmap: {self.hash_map}")
         print(f"{'='*130}")
-        add_break_point(5,sleep_only=True)
+        add_break_point(1,sleep_only=True)
         return self.hash_map
